@@ -7,3 +7,11 @@ class Warehouse(models.Model):
 
     def __str__(self):
         return self.name
+
+class Inventory(models.Model):
+    warehouse = models.ForeignKey(Warehouse, on_delete=models.CASCADE, related_name='inventory')
+    item_name = models.CharField(max_length=255)
+    quantity = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"{self.item_name} ({self.quantity})"
