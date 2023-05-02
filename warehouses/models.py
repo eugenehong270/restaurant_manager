@@ -8,6 +8,17 @@ class Warehouse(models.Model):
     def __str__(self):
         return self.name
 
+from django.db import models
+
+class Restaurant(models.Model):
+    name = models.CharField(max_length=255)
+    x_coordinate = models.FloatField()
+    y_coordinate = models.FloatField()
+
+    def __str__(self):
+        return self.name
+
+
 class Inventory(models.Model):
     warehouse = models.ForeignKey(Warehouse, on_delete=models.CASCADE, related_name='inventory')
     item_name = models.CharField(max_length=255)

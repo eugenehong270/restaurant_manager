@@ -1,7 +1,8 @@
 from rest_framework import generics
-from .models import Warehouse, Inventory
-from .serializers import WarehouseSerializer, InventorySerializer
+from .models import Warehouse, Inventory, Restaurant
+from .serializers import WarehouseSerializer, InventorySerializer, RestaurantSerializer
 
+# WAREHOUSES
 class WarehouseListCreateView(generics.ListCreateAPIView):
     queryset = Warehouse.objects.all()
     serializer_class = WarehouseSerializer
@@ -11,6 +12,17 @@ class WarehouseRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = WarehouseSerializer
 
 
+# RESTAURANTS
+class RestaurantListCreateView(generics.ListCreateAPIView):
+    queryset = Restaurant.objects.all()
+    serializer_class = RestaurantSerializer
+
+class RestaurantRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Restaurant.objects.all()
+    serializer_class = RestaurantSerializer
+
+
+#INVENTORY
 class InventoryListCreateView(generics.ListCreateAPIView):
     serializer_class = InventorySerializer
 

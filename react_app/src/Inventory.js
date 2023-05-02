@@ -33,10 +33,13 @@ function Inventory() {
 
   const items = {};
   inventory.forEach((item) => {
-    if (items[item.item_name]) {
-      items[item.item_name] += item.quantity;
+    if (items[item.sku]) {
+      items[item.sku].quantity += item.quantity;
     } else {
-      items[item.item_name] = item.quantity;
+      items[item.sku] = {
+        itemName: item.item_name,
+        quantity: item.quantity,
+      };
     }
   });
 
@@ -54,14 +57,16 @@ function Inventory() {
         <thead>
           <tr>
             <th>Item Name</th>
+            <th>SKU</th>
             <th>Total Quantity</th>
           </tr>
         </thead>
         <tbody>
-          {Object.keys(items).map((itemName) => (
-            <tr key={itemName}>
-              <td>{itemName}</td>
-              <td>{items[itemName]}</td>
+          {Object.keys(items).map((sku) => (
+            <tr key={sku}>
+              <td>{items[sku].itemName}</td>
+              <td>{sku}</td>
+              <td>{items[sku].quantity}</td>
             </tr>
           ))}
         </tbody>
