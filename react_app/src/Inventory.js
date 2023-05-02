@@ -5,6 +5,8 @@ function Inventory() {
   const [inventory, setInventory] = useState([]);
   const [selectedWarehouse, setSelectedWarehouse] = useState('');
 
+  const [warehouseOptions, setWarehouseOptions] = useState([]);
+
   useEffect(() => {
     async function fetchInventory() {
       let url = 'http://localhost:8000/api/inventory/';
@@ -17,9 +19,26 @@ function Inventory() {
     fetchInventory();
   }, [selectedWarehouse]);
 
+  useEffect(() => {
+    async function fetchWarehouses() {
+      const response = await axios.get('http://localhost:8000/api/warehouses/');
+      setWarehouseOptions(response.data);
+    }
+    fetchWarehouses();
+  }, []);
+
   async function handleWarehouseChange(event) {
     setSelectedWarehouse(event.target.value);
   }
+
+  const items = {};
+  inventory.forEach((item) => {
+    if (items[item.item_name]) {
+      items[item.item_name] += item.quantity;
+    } else {
+      items[item.item_name] = item.quantity;
+    }
+  });
 
   return (
     <div>
@@ -27,25 +46,22 @@ function Inventory() {
       <label htmlFor="warehouse-select">Select a warehouse:</label>
       <select id="warehouse-select" value={selectedWarehouse} onChange={handleWarehouseChange}>
         <option value="">All Warehouses</option>
-        <option value="1">Warehouse 1</option>
-        <option value="2">Warehouse 2</option>
-        <option value="3">Warehouse 3</option>
-        {/* Add more options here as needed */}
+        {warehouseOptions.map((warehouse) => (
+          <option key={warehouse.id} value={warehouse.id}>{warehouse.name}</option>
+        ))}
       </select>
       <table>
         <thead>
           <tr>
-            <th>Warehouse</th>
             <th>Item Name</th>
-            <th>Quantity</th>
+            <th>Total Quantity</th>
           </tr>
         </thead>
         <tbody>
-          {inventory.map((item) => (
-            <tr key={item.id}>
-              <td>{item.warehouse.name}</td>
-              <td>{item.item_name}</td>
-              <td>{item.quantity}</td>
+          {Object.keys(items).map((itemName) => (
+            <tr key={itemName}>
+              <td>{itemName}</td>
+              <td>{items[itemName]}</td>
             </tr>
           ))}
         </tbody>
