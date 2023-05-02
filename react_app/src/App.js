@@ -1,6 +1,9 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Nav from './Nav';
+import Warehouse from './WareHouse';
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 import MainPage from './MainPage';
 
@@ -10,9 +13,13 @@ function App() {
     <BrowserRouter>
       <Nav />
       <Routes>
+        {/* main page */}
         <Route path="/" element={<MainPage />} />
 
-        <Route />
+        {/* warehouse */}
+        <Route path="warehouse">
+          <Route path="" element={<Warehouse />} />
+        </Route>
 
 
 
