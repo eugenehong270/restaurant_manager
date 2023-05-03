@@ -34,10 +34,13 @@ function OrderForm() {
     setInventory(inventoryList);
   }
 
-
   useEffect(() => {
     fetchInventory();
   }, []);
+
+  function calculateDistance(x1, y1, x2, y2) {
+    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -45,20 +48,28 @@ function OrderForm() {
       const warehousesResponse = await axios.get('http://localhost:8000/api/warehouses/');
       const warehouseIds = warehousesResponse.data.map(warehouse => warehouse.id);
 
+      const restaurantResponse = await axios.get(`http://localhost:8000/api/restaurants/${selectedRestaurant}/`);
+      const restaurant = restaurantResponse.data;
+
       const closestWarehouses = [];
       for (let i = 0; i < warehouseIds.length; i++) {
         const inventoryResponse = await axios.get(`http://localhost:8000/api/inventory/?warehouse=${warehouseIds[i]}`);
         const chosenItemInventory = inventoryResponse.data.filter(item => item.sku === selectedItem && item.quantity >= quantity);
         if (chosenItemInventory.length > 0) {
           const warehouseResponse = await axios.get(`http://localhost:8000/api/warehouses/${warehouseIds[i]}/`);
+          const warehouse = warehouseResponse.data;
+          const distance = calculateDistance(restaurant.x_coordinate, restaurant.y_coordinate, warehouse.x_coordinate, warehouse.y_coordinate);
           closestWarehouses.push({
-            ...warehouseResponse.data,
+            ...warehouse,
+            distance,
             quantity: chosenItemInventory[0].quantity,
             sku: chosenItemInventory[0].sku,
             item_name: chosenItemInventory[0].item_name,
           });
         }
       }
+
+      closestWarehouses.sort((a, b) => a.distance - b.distance);
       setClosestWarehouses(closestWarehouses);
     } catch (error) {
       console.error(error);
@@ -76,7 +87,6 @@ function OrderForm() {
   function handleQuantityChange(event) {
     setQuantity(event.target.value);
   }
-
   return (
     <div>
       <h1>Order Form</h1>
@@ -114,21 +124,20 @@ function OrderForm() {
           />
         </div>
         <button type="submit">Submit</button>
-      </form>
-      {closestWarehouses.length > 0 && (
-  <div>
-    <h2>Closest Warehouses:</h2>
-    <ul>
-      {closestWarehouses.map(warehouse => (
-        <li key={warehouse.id}>
-          {warehouse.name} - Quantity: {warehouse.quantity}, SKU: {warehouse.sku}, Item Name: {warehouse.item_name}
-        </li>
-      ))}
-    </ul>
+    </form>
+    {closestWarehouses.length > 0 && (
+      <div>
+        <h2>Closest Warehouses:</h2>
+        <ul>
+          {closestWarehouses.map(warehouse => (
+            <li key={warehouse.id}>
+              {warehouse.name} - Distance: {warehouse.distance.toFixed(2)}, Quantity: {warehouse.quantity}, SKU: {warehouse.sku}, Item Name: {warehouse.item_name}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
   </div>
-)}
-
-</div>
-  );
+);
 }
 export default OrderForm
