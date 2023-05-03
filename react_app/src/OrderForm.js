@@ -65,6 +65,7 @@ function OrderForm() {
             quantity: chosenItemInventory[0].quantity,
             sku: chosenItemInventory[0].sku,
             item_name: chosenItemInventory[0].item_name,
+            inventory_id: chosenItemInventory[0].id || chosenItemInventory[0].inventory_id,
           });
         }
       }
@@ -73,6 +74,33 @@ function OrderForm() {
       setClosestWarehouses(closestWarehouses);
     } catch (error) {
       console.error(error);
+    }
+  }
+
+  async function handleUpdateInventory(warehouse) {
+    try {
+      const updatedQuantity = warehouse.quantity - quantity;
+      if (updatedQuantity < 0) {
+        alert('Unable to subtract the selected quantity from the warehouse inventory as it exceeds the available quantity.');
+        return;
+      }
+
+      // Assuming there's an API endpoint to update inventory
+      const response = await axios.patch(`http://localhost:8000/api/inventory/${warehouse.inventory_id}/`, {
+        quantity: updatedQuantity,
+      });
+
+      if (response.status === 200) {
+        alert('Inventory updated successfully.');
+        // Refetch the inventory and closest warehouses data to update the state
+        fetchInventory();
+        handleSubmit(new Event('submit'));
+      } else {
+        alert('Error updating inventory.');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Error updating inventory.');
     }
   }
 
@@ -124,20 +152,22 @@ function OrderForm() {
           />
         </div>
         <button type="submit">Submit</button>
-    </form>
-    {closestWarehouses.length > 0 && (
-      <div>
-        <h2>Closest Warehouses:</h2>
-        <ul>
-          {closestWarehouses.map(warehouse => (
-            <li key={warehouse.id}>
-              {warehouse.name} - Distance: {warehouse.distance.toFixed(2)}, Quantity: {warehouse.quantity}, SKU: {warehouse.sku}, Item Name: {warehouse.item_name}
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
-  </div>
-);
+      </form>
+      {closestWarehouses.length > 0 && (
+        <div>
+          <h2>Closest Warehouses:</h2>
+          <ul>
+            {closestWarehouses.map(warehouse => (
+              <li key={warehouse.id}>
+                {warehouse.name} - Distance: {warehouse.distance.toFixed(2)}, Quantity: {warehouse.quantity}, SKU: {warehouse.sku}, Item Name: {warehouse.item_name}
+                <button onClick={() => handleUpdateInventory(warehouse)}>Update Inventory</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }
-export default OrderForm
+
+export default OrderForm;
