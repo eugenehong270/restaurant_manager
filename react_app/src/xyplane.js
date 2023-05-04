@@ -14,6 +14,7 @@ class XYPlane extends React.Component {
     this.drawPoints();
   }
 
+
   drawPoints() {
     const { points } = this.props;
     const canvas = this.canvasRef.current;

@@ -1,46 +1,12 @@
-.nav-card {
-  height: 100%;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+/* index.css */
+.navbar {
+  background-color: transparent !important; /* Make the nav bar transparent */
 }
 
-.nav-card:hover {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  transform: translateY(-3px);
+.nav-link {
+  color: white !important; /* Change the color of the nav links to white */
 }
 
-.card-body {
-  padding-top: 2rem;
-}
-
-body {
-  background-color: #1a202c;
-}
-
-.nav-card {
-  background-color: #2d3748;
-  color: #edf2f7;
-}
-
-.nav-card:hover {
-  background-color: #4a5568;
-}
-
-.card-link {
-  color: #a0aec0;
-  padding-left: 1rem;
-}
-
-.card-link:hover {
-  color: #e2e8f0;
-}
-
-.card-link.active {
-  color: #90cdf4;
-  font-weight: bold;
-}
-
-.card-body {
-  text-align: left;
+.nav-link:hover {
+  color: #e2e8f0 !important; /* Change the hover color of the nav links */
 }

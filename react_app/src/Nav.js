@@ -1,95 +1,63 @@
+
 import { NavLink } from 'react-router-dom';
-import './Nav.css';
+import './index.css'
+import logo from './assets/logo.png'
+
+
 
 function Nav() {
-  return (
-    <div className="container pt-5">
-      <div className="row gy-4">
-        <div className="col-md-3 col-sm-6">
-          <div className="card nav-card">
-            <div className="card-body text-center">
-              <h5 className="card-title">Home</h5>
-              <NavLink
-                className="card-link d-block"
-                activeClassName="active"
-                to="/"
-              >
-                MainPage
-              </NavLink>
-            </div>
-          </div>
-        </div>
+    return (
+        <nav className="navbar navbar-expand-lg navbar-dark">
+          <div className="container-fluid">
+            <NavLink className="navbar-brand">
+              <img src={logo} style={{ height: "80px" }}/>
+            </NavLink>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon" />
+            </button>
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              {/* HOME */}
+              <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">HOME</a>
+                      <ul className="dropdown-menu">
+                        <li><NavLink className="dropdown-item" to="/">MainPage</NavLink></li>
+                      </ul>
+                </li>
 
-        <div className="col-md-3 col-sm-6">
-          <div className="card nav-card">
-            <div className="card-body text-center">
-              <h5 className="card-title">Warehouse</h5>
-              <NavLink
-                className="card-link d-block"
-                activeClassName="active"
-                to="/warehouse"
-              >
-                View Warehouses
-              </NavLink>
-              <NavLink
-                className="card-link d-block"
-                activeClassName="active"
-                to="/warehouseform"
-              >
-                Create Warehouse
-              </NavLink>
-            </div>
-          </div>
-        </div>
+                {/* WAREHOUSE */}
+                <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> WAREHOUSE</a>
+                      <ul className="dropdown-menu">
+                        <li><NavLink className="dropdown-item" to="/warehouse">View Warehouses</NavLink></li>
+                        <li><NavLink className="dropdown-item" to="/warehouseform">Create Warehouse</NavLink></li>
+                      </ul>
+                </li>
 
-        <div className="col-md-3 col-sm-6">
-          <div className="card nav-card">
-            <div className="card-body text-center">
-              <h5 className="card-title">Inventory</h5>
-              <NavLink
-                className="card-link d-block"
-                to="/inventory"
-              >
-                View Inventory
-              </NavLink>
-              <NavLink
-                className="card-link d-block"
-                to="/inventory/new"
-              >
-                Add to Inventory
-              </NavLink>
-            </div>
-          </div>
-        </div>
+                {/* INVENTORY */}
+                <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">INVENTORY</a>
+                      <ul className="dropdown-menu">
+                        <li><NavLink className="dropdown-item" to="/inventory">View Inventory</NavLink></li>
+                        <li><NavLink className="dropdown-item" to="/inventoryform">Add to Inventory</NavLink></li>
+                      </ul>
+                </li>
 
-        <div className="col-md-3 col-sm-6">
-          <div className="card nav-card">
-            <div className="card-body text-center">
-              <h5 className="card-title">Restaurant</h5>
-              <NavLink
-                className="card-link d-block"
-                to="/restaurant"
-              >
-                View Restaurants
-              </NavLink>
-              <NavLink
-                className="card-link d-block"
-                to="/restaurant/new"
-              >
-                Create a Restaurant
-              </NavLink>
-              <NavLink
-                className="card-link d-block"
-                to="/restaurant/order"
-              >
-                Place an Order
-              </NavLink>
+                {/* IDK YET */}
+                <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">RESTAURANT</a>
+                      <ul className="dropdown-menu">
+                        <li><NavLink className="dropdown-item" to="/restaurant">View Restaurants</NavLink></li>
+                        <li><NavLink className="dropdown-item" to="/restaurantform">Create a Restaurant</NavLink></li>
+                        <li><NavLink className="dropdown-item" to="/orderform">Place an Order</NavLink></li>
+                      </ul>
+                </li>
+
+              </ul>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  );
+        </nav>
+      )
 }
 
 export default Nav;

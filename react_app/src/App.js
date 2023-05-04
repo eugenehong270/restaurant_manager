@@ -44,13 +44,19 @@ function App() {
 
         <Route path="inventory">
           <Route path="" element={<Inventory />} />
-          <Route path="new" element={<InventoryForm />} />
+        </Route>
+        <Route path="inventoryform">
+          <Route path="" element={<InventoryForm />} />
         </Route>
 
         <Route path="restaurant">
           <Route path="" element={<Restaurant />} />
-          <Route path="new" element={<RestaurantForm />} />
-          <Route path="order" element={<OrderForm />} />
+        </Route>
+        <Route path="restaurantform">
+          <Route path="" element={<RestaurantForm />} />
+        </Route>
+        <Route path="orderform">
+          <Route path="" element={<OrderForm />} />
         </Route>
 
 

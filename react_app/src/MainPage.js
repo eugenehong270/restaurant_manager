@@ -2,11 +2,13 @@
 import React from 'react';
 import XYPlane from './xyplane';
 import './mainpage.css';
+import map from './assets/map.png'
 
 const Legend = ({ warehouses, restaurants }) => (
   <div className="map-legend">
     <h2>Legend</h2>
     <h3>Warehouses</h3>
+    <h6>Marked as "."</h6>
     <ul>
       {warehouses.map((warehouse, index) => (
         <li key={warehouse.id}>
@@ -15,6 +17,7 @@ const Legend = ({ warehouses, restaurants }) => (
       ))}
     </ul>
     <h3>Restaurants</h3>
+    <h6>Marked as "x"</h6>
     <ul>
       {restaurants.map((restaurant, index) => (
         <li key={restaurant.id}>
@@ -75,16 +78,18 @@ class App extends React.Component {
     }
   }
 
-
   render() {
     const { points, warehouses, restaurants } = this.state;
 
     return (
-      <div className="map-legend-container">
-        <Legend warehouses={warehouses} restaurants={restaurants} />
-        <div className="xy-plane-container">
-          <h1>Map</h1>
-          <XYPlane points={points} />
+      <div className="container">
+        <img className="dotmap" src={map} alt="Dot map" />
+        <div className="map-legend-container">
+          <Legend warehouses={warehouses} restaurants={restaurants} />
+          <div className="xy-plane-container">
+            <h1>Map</h1>
+            <XYPlane points={points} />
+          </div>
         </div>
       </div>
     );
