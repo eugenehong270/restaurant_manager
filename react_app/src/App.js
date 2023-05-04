@@ -30,11 +30,17 @@ function App() {
         {/* main page */}
         <Route path="/" element={<MainPage />} />
 
+
         {/* warehouse */}
         <Route path="warehouse">
           <Route path="" element={<Warehouse />} />
-          <Route path="new" element={<WarehouseForm />} />
         </Route>
+
+        <Route path="warehouseform">
+          <Route path="" element={<WarehouseForm />} />
+        </Route>
+
+
 
         <Route path="inventory">
           <Route path="" element={<Inventory />} />

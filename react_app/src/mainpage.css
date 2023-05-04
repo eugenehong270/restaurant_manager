@@ -1,0 +1,15 @@
+/* mainpage.css */
+.map-legend-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px); /* Adjust this value to move the content up or down */
+  }
+
+  .map-legend {
+    margin-right: 20px;
+  }
+
+  .xy-plane-container {
+    display: inline-block;
+  }

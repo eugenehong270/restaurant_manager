@@ -34,7 +34,7 @@ function Nav() {
               <NavLink
                 className="card-link d-block"
                 activeClassName="active"
-                to="/warehouse/new"
+                to="/warehouseform"
               >
                 Create Warehouse
               </NavLink>
