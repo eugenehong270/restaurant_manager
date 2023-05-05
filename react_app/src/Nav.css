@@ -1,12 +1,18 @@
-/* index.css */
 .navbar {
-  background-color: transparent !important; /* Make the nav bar transparent */
+  background-color: transparent !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
 }
 
 .nav-link {
-  color: white !important; /* Change the color of the nav links to white */
+  color: white !important;
 }
 
 .nav-link:hover {
-  color: #e2e8f0 !important; /* Change the hover color of the nav links */
+  color: #e2e8f0 !important;
 }

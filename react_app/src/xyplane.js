@@ -43,13 +43,13 @@ class XYPlane extends React.Component {
 
       if (type === 'warehouse') {
         ctx.beginPath();
-        ctx.arc(normalizedX, normalizedY, 2, 0, 2 * Math.PI);
-        ctx.fillStyle = 'red';
+        ctx.arc(normalizedX, normalizedY, 3, 0, 2 * Math.PI);
+        ctx.fillStyle = '#4fe2a5';
         ctx.fill();
         ctx.closePath();
       } else if (type === 'restaurant') {
         ctx.beginPath();
-        ctx.strokeStyle = 'blue';
+        ctx.strokeStyle = '#ff6090';
         ctx.moveTo(normalizedX - 3, normalizedY - 3);
         ctx.lineTo(normalizedX + 3, normalizedY + 3);
         ctx.moveTo(normalizedX + 3, normalizedY - 3);
@@ -59,7 +59,7 @@ class XYPlane extends React.Component {
       }
 
       ctx.font = '12px Arial';
-      ctx.fillStyle = 'black';
+      ctx.fillStyle = 'white';
       ctx.fillText(number, normalizedX + 5, normalizedY + 3);
     });
   }
@@ -71,7 +71,7 @@ class XYPlane extends React.Component {
         width="500"
         height="500"
         style={{
-          border: '1px solid black',
+          border: '3px solid black',
           display: 'block',
           margin: '0 auto',
         }}
