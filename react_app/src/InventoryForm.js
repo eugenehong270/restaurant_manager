@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './form.css'
 
 function InventoryForm() {
   const [warehouses, setWarehouses] = useState([]);

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './form.css'
 
 function WarehouseForm() {
   const [name, setName] = useState('');
@@ -29,7 +30,7 @@ function WarehouseForm() {
       <h1>Create Warehouse</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Name:</label>
+          <label className='label' htmlFor="name">Name:</label>
           <input
             type="text"
             id="name"
