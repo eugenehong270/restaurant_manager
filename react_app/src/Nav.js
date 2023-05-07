@@ -36,13 +36,23 @@ function Nav() {
                       </ul>
                 </li>
 
-                {/* IDK YET */}
+                {/* RESTAURANT */}
                 <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">RESTAURANT</a>
                       <ul className="dropdown-menu">
                         <li><NavLink className="dropdown-item" to="/restaurant">View Restaurants</NavLink></li>
                         <li><NavLink className="dropdown-item" to="/restaurantform">Create a Restaurant</NavLink></li>
                         <li><NavLink className="dropdown-item" to="/orderform">Place an Order</NavLink></li>
+                      </ul>
+                </li>
+                {/* SQL Variants */}
+                <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">SQL PAGES</a>
+                      <ul className="dropdown-menu">
+                        <li><NavLink className="dropdown-item" to="/warehousesql">SQL*  View Warehouses</NavLink></li>
+                        <li><NavLink className="dropdown-item" to="/warehousesqlform">SQL*  Create a Warehouse</NavLink></li>
+
+
                       </ul>
                 </li>
 

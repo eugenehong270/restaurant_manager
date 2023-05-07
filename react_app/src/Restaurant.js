@@ -19,16 +19,16 @@ function Restaurant() {
         <thead>
           <tr>
             <th>Name</th>
-            <th>X Coordinate</th>
-            <th>Y Coordinate</th>
+            <th>ID</th>
+
           </tr>
         </thead>
         <tbody>
           {restaurants.map((restaurant) => (
             <tr key={restaurant.id}>
               <td>{restaurant.name}</td>
-              <td>{restaurant.x_coordinate}</td>
-              <td>{restaurant.y_coordinate}</td>
+              <td>{restaurant.id}</td>
+
             </tr>
           ))}
         </tbody>
