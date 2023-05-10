@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function Restaurant() {
@@ -6,9 +6,7 @@ function Restaurant() {
 
   useEffect(() => {
     async function fetchRestaurants() {
-      const response = await axios.get(
-        'http://localhost:8000/api/restaurants/'
-      );
+      const response = await axios.get('http://localhost:8000/api/restaurants/');
       setRestaurants(response.data);
     }
     fetchRestaurants();
@@ -21,16 +19,16 @@ function Restaurant() {
         <thead>
           <tr>
             <th>Name</th>
-            <th>X Coordinate</th>
-            <th>Y Coordinate</th>
+            <th>ID</th>
+
           </tr>
         </thead>
         <tbody>
           {restaurants.map((restaurant) => (
             <tr key={restaurant.id}>
               <td>{restaurant.name}</td>
-              <td>{restaurant.x_coordinate}</td>
-              <td>{restaurant.y_coordinate}</td>
+              <td>{restaurant.id}</td>
+
             </tr>
           ))}
         </tbody>

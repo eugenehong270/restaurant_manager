@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './Inventory.css'
 
 function Inventory() {
   const [inventory, setInventory] = useState([]);
@@ -47,19 +48,10 @@ function Inventory() {
     <div>
       <h1>Inventory</h1>
       <label htmlFor="warehouse-select">Select a warehouse:</label>
-      <select
-        id="warehouse-select"
-        value={selectedWarehouse}
-        onChange={handleWarehouseChange}
-      >
+      <select id="warehouse-select" value={selectedWarehouse} onChange={handleWarehouseChange}>
         <option value="">All Warehouses</option>
         {warehouseOptions.map((warehouse) => (
-          <option
-            key={warehouse.id}
-            value={warehouse.id}
-          >
-            {warehouse.name}
-          </option>
+          <option key={warehouse.id} value={warehouse.id}>{warehouse.name}</option>
         ))}
       </select>
       <table>
