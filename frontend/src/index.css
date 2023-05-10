@@ -1,0 +1,64 @@
+.navAbsolute {
+  position: absolute;
+}
+
+.navbar {
+  z-index: 5;
+}
+/* Dark theme text colors */
+body {
+  color: #edf2f7;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #35ffb1;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  border: 1px solid #4a5568;
+  padding: 1rem;
+  text-align: left;
+  color: #e2e8f0;
+}
+
+table th {
+  background-color: #2d3748;
+}
+
+table tr:nth-child(even) {
+  background-color: #2d3748;
+}
+
+table tr:nth-child(odd) {
+  background-color: #1a202c;
+}
+
+/* Radial gradient background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+    ellipse farthest-corner at bottom left,
+    black 0%,
+    black 100%
+  );
+  z-index: -1;
+}
+
+label {
+  color: black
+}
