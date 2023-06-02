@@ -16,6 +16,8 @@ import Restaurant from './Restaurant';
 import RestaurantForm from './RestaurantForm';
 import OrderForm from './OrderForm';
 
+import InventoryData from './InventoryData';
+
 // SQL pages
 
 import WarehouseSQL from './WarehouseSQL'
@@ -73,6 +75,11 @@ function App() {
         <Route path="warehousesqlform">
           <Route path="" element={<WarehouseSQLForm />} />
         </Route>
+
+        <Route path="inventorydata">
+          <Route path="" element={<InventoryData />} />
+        </Route>
+
 
       </Routes>
     </BrowserRouter>

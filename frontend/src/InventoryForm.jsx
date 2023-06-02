@@ -25,7 +25,7 @@ function InventoryForm() {
         warehouse: selectedWarehouse,
         item_name: itemName,
         quantity,
-        sku,
+        sku
       });
       setMessage('Inventory added successfully!');
       setSelectedWarehouse('');

@@ -17,4 +17,4 @@ class RestaurantSerializer(serializers.ModelSerializer):
 class InventorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Inventory
-        fields = ["id", "warehouse", "item_name", "quantity", "sku"]
+        fields = ["id", "warehouse", "item_name", "quantity", "sku", "date"]  # Added "date"

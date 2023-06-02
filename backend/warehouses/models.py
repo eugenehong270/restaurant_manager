@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Warehouse(models.Model):
@@ -26,6 +27,7 @@ class Inventory(models.Model):
     item_name = models.CharField(max_length=255)
     quantity = models.PositiveIntegerField()
     sku = models.CharField(max_length=255)
+    date = models.DateField(default=timezone.now) # Added date field
 
     def __str__(self):
         return f"{self.item_name} ({self.quantity})"

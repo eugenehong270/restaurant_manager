@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Inventory.css'
+import Plot from 'react-plotly.js';
 
 function Inventory() {
   const [inventory, setInventory] = useState([]);
   const [selectedWarehouse, setSelectedWarehouse] = useState('');
-
   const [warehouseOptions, setWarehouseOptions] = useState([]);
 
   useEffect(() => {
@@ -44,6 +44,9 @@ function Inventory() {
     }
   });
 
+  const itemNames = Object.keys(items).map(sku => items[sku].itemName);
+  const quantities = Object.keys(items).map(sku => items[sku].quantity);
+
   return (
     <div>
       <h1>Inventory</h1>
@@ -54,6 +57,52 @@ function Inventory() {
           <option key={warehouse.id} value={warehouse.id}>{warehouse.name}</option>
         ))}
       </select>
+
+      {/* <Plot
+        data={[
+          {
+            type: 'bar',
+            x: itemNames,
+            y: quantities,
+            width: 0.2, // specify the width of the bars
+          }
+        ]}
+        layout={{ autosize: true, title: 'Inventory Quantity' }}
+        style={{ width: "100%", height: "100%" }}
+        useResizeHandler={true}
+      /> */}
+
+      <Plot
+        data={[
+          {
+            type: 'bar',
+            x: itemNames,
+            y: quantities,
+            width: 0.2, // specify the width of the bars
+            marker: {
+              color: 'ffae00', // color of the bars
+            },
+          }
+        ]}
+
+
+        layout={{
+          autosize: true,
+          title: 'Inventory Quantity',
+          margin: {
+            l: 50, // left margin
+            r: 50, // right margin
+            t: 50, // top margin
+            b: 50, // bottom margin
+          },
+        }}
+        style={{ width: "100%", height: "100%" }}
+        useResizeHandler={true}
+      />
+
+
+
+
       <table>
         <thead>
           <tr>

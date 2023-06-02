@@ -33,6 +33,7 @@ function Nav() {
                       <ul className="dropdown-menu">
                         <li><NavLink className="dropdown-item" to="/inventory">View Inventory</NavLink></li>
                         <li><NavLink className="dropdown-item" to="/inventoryform">Add to Inventory</NavLink></li>
+                        <li><NavLink className="dropdown-item" to="/inventorydata">Inventory Data</NavLink></li>
                       </ul>
                 </li>
 
